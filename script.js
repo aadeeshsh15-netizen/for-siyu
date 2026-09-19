@@ -185,87 +185,58 @@ if (cursor && follower && window.matchMedia('(pointer: fine)').matches) {
 }
 
 // -----------------------------------------------------------------------------
-// 3. Voluntary Ambient Soundscape (Web Audio API Synthesizer)
+// 3. Background Music Controller (Raabta - Pritam, Arijit Singh)
 // -----------------------------------------------------------------------------
-let audioCtx = null;
 let soundPlaying = false;
-let ambientGain = null;
-let chordInterval = null;
+let bgMusic = null;
 
-const chords = [
-  [220.00, 261.63, 329.63, 392.00], // Am7
-  [174.61, 220.00, 261.63, 329.63], // Fmaj7
-  [130.81, 164.81, 196.00, 246.94], // Cmaj7
-  [196.00, 246.94, 293.66, 349.23]  // G7
-];
-
-let filterNode = null;
-
-function playAmbientChord(freqs) {
-  if (!audioCtx || !soundPlaying) return;
-  const now = audioCtx.currentTime;
-
-  freqs.forEach((freq, idx) => {
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
+function initAudio() {
+  if (!bgMusic) {
+    bgMusic = document.getElementById('bgMusic');
+    if (!bgMusic) {
+      bgMusic = new Audio('raabta.mp3');
+      bgMusic.id = 'bgMusic';
+      bgMusic.loop = true;
+      document.body.appendChild(bgMusic);
+    }
+    bgMusic.loop = true;
+    bgMusic.volume = 0.65;
     
-    // Warm harmonics: sine for soft round body
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(freq, now);
-
-    // Warm, slow attack and smooth decaying release
-    gain.gain.setValueAtTime(0.0001, now);
-    gain.gain.exponentialRampToValueAtTime(0.018 / freqs.length, now + 1.8);
-    gain.gain.exponentialRampToValueAtTime(0.0001, now + 6.5);
-
-    osc.connect(gain);
-    gain.connect(filterNode || ambientGain);
-
-    osc.start(now);
-    osc.stop(now + 6.8);
-  });
+    // Fallback if accessed from sibling directory
+    bgMusic.addEventListener('error', () => {
+      const currentSrc = bgMusic.currentSrc || bgMusic.src;
+      if (!currentSrc.includes('media/')) {
+        bgMusic.src = 'media/raabta.mp3';
+        if (soundPlaying) {
+          bgMusic.play().catch(e => console.warn('Audio fallback error:', e));
+        }
+      }
+    });
+  }
 }
 
 function toggleSound() {
   const soundBtn = document.getElementById('soundToggleBtn');
   const soundLabel = document.getElementById('soundLabel');
   
-  if (!audioCtx) {
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    audioCtx = new AudioContext();
-
-    // Warm felt filter for acoustic character
-    filterNode = audioCtx.createBiquadFilter();
-    filterNode.type = 'lowpass';
-    filterNode.frequency.setValueAtTime(520, audioCtx.currentTime);
-
-    ambientGain = audioCtx.createGain();
-    ambientGain.gain.setValueAtTime(0.55, audioCtx.currentTime);
-
-    filterNode.connect(ambientGain);
-    ambientGain.connect(audioCtx.destination);
-  }
-
-  if (audioCtx.state === 'suspended') {
-    audioCtx.resume();
-  }
+  initAudio();
 
   soundPlaying = !soundPlaying;
 
   if (soundPlaying) {
-    soundBtn.classList.add('active');
-    if (soundLabel) soundLabel.textContent = 'Playing';
-
-    let chordIdx = 0;
-    playAmbientChord(chords[chordIdx]);
-    chordInterval = setInterval(() => {
-      chordIdx = (chordIdx + 1) % chords.length;
-      playAmbientChord(chords[chordIdx]);
-    }, 5800);
+    bgMusic.play().then(() => {
+      soundBtn.classList.add('active');
+      if (soundLabel) soundLabel.textContent = 'Playing';
+    }).catch((err) => {
+      console.warn('Audio playback prevented or failed:', err);
+      soundPlaying = false;
+      soundBtn.classList.remove('active');
+      if (soundLabel) soundLabel.textContent = 'Music';
+    });
   } else {
+    bgMusic.pause();
     soundBtn.classList.remove('active');
     if (soundLabel) soundLabel.textContent = 'Music';
-    if (chordInterval) clearInterval(chordInterval);
   }
 }
 
