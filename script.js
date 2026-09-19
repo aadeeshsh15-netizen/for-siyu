@@ -647,4 +647,15 @@ document.addEventListener('DOMContentLoaded', () => {
       scrollToSection('chapter-opening');
     });
   }
+
+  // Handle direct hash navigation
+  if (window.location.hash) {
+    const target = document.querySelector(window.location.hash);
+    if (target) {
+      setTimeout(() => {
+        target.scrollIntoView({ behavior: 'auto' });
+        checkReveals();
+      }, 150);
+    }
+  }
 });
