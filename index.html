@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#09070c">
+  <title>For Siyu — From Aadu</title>
+  <meta name="description" content="An interactive memory and personal apology from Aadu for Siyu.">
+
+  <!-- Typography: Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Atmospheric Background Canvas & Overlays -->
+  <div class="bg-ambient"></div>
+  <canvas id="ambient-canvas"></canvas>
+  <div class="bg-grain"></div>
+
+  <!-- Custom Cursor (Desktop) -->
+  <div class="custom-cursor" id="custom-cursor"></div>
+  <div class="custom-cursor-follower" id="custom-cursor-follower"></div>
+
+  <!-- Top Reading Progress Indicator -->
+  <div class="reading-progress-bar">
+    <div class="reading-progress-fill" id="readingProgressFill"></div>
+  </div>
+
+  <!-- Top Right Sound & Navigation Controls -->
+  <header class="nav-controls">
+    <button class="ctrl-btn" id="soundToggleBtn" aria-label="Toggle subtle ambient soundscape">
+      <svg viewBox="0 0 24 24">
+        <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+      </svg>
+      <span id="soundLabel">Sound: Off</span>
+    </button>
+  </header>
+
+  <!-- Side Chapter Progress Dock -->
+  <nav class="chapter-dock" aria-label="Chapter navigation">
+    <div class="dock-item active" data-target="chapter-opening" title="Chapter 01">
+      <div class="dock-dot"></div>
+      <span class="dock-label">01 · For Siyu</span>
+    </div>
+    <div class="dock-item" data-target="chapter-apology" title="Chapter 02">
+      <div class="dock-dot"></div>
+      <span class="dock-label">02 · Before Anything Else</span>
+    </div>
+    <div class="dock-item" data-target="chapter-understand" title="Chapter 03">
+      <div class="dock-dot"></div>
+      <span class="dock-label">03 · What I Understand Now</span>
+    </div>
+    <div class="dock-item" data-target="chapter-editorial" title="Chapter 04">
+      <div class="dock-dot"></div>
+      <span class="dock-label">04 · Our Little Universe</span>
+    </div>
+    <div class="dock-item" data-target="chapter-gallery" title="Chapter 05">
+      <div class="dock-dot"></div>
+      <span class="dock-label">05 · The Memories</span>
+    </div>
+    <div class="dock-item" data-target="chapter-videos" title="Chapter 06">
+      <div class="dock-dot"></div>
+      <span class="dock-label">06 · The Moments That Move</span>
+    </div>
+    <div class="dock-item" data-target="chapter-little-things" title="Chapter 07">
+      <div class="dock-dot"></div>
+      <span class="dock-label">07 · The Little Things</span>
+    </div>
+    <div class="dock-item" data-target="chapter-letter" title="Chapter 08">
+      <div class="dock-dot"></div>
+      <span class="dock-label">08 · A Letter from Aadu</span>
+    </div>
+    <div class="dock-item" data-target="chapter-farewell" title="Chapter 09">
+      <div class="dock-dot"></div>
+      <span class="dock-label">09 · One Last Thing</span>
+    </div>
+  </nav>
+
+  <!-- ======================================================================
+       CHAPTER 01 · FOR SIYU
+       ====================================================================== -->
+  <section id="chapter-opening">
+    <div class="hero-aura"></div>
+    <div class="container text-center">
+      <div class="hero-tag reveal-fade visible">A space created just for you</div>
+      <h1 class="hero-title reveal-fade visible delay-1"><span>Siyu.</span></h1>
+      <p class="hero-subtitle reveal-fade visible delay-2">"For the person I never wanted to hurt."</p>
+      
+      <div class="hero-prompt reveal-fade visible delay-3">
+        <button class="start-btn" id="startJourneyBtn">Begin</button>
+        <span class="hero-footnote">Take all the time you need · There is no rush</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       CHAPTER 02 · BEFORE ANYTHING ELSE
+       ====================================================================== -->
+  <section id="chapter-apology">
+    <div class="container-narrow">
+      <div class="glass-panel reveal-fade">
+        <div class="eyebrow">Chapter 01 · Before Anything Else</div>
+        <h2>I said something<br><span class="highlight">I shouldn't have said.</span></h2>
+        
+        <div class="apology-body">
+          <div class="lead-statement">
+            What I said communicated <strong>distrust</strong> between us, and I understand why that hurt you so deeply.
+          </div>
+          <p>
+            Trust is supposed to be the one thing that feels safe and solid in a relationship. When I let words come out that questioned or doubted that foundation, I broke the comfort and security you deserve to feel with me.
+          </p>
+          <p>
+            I am not going to offer excuses. I am not going to blame circumstances, tiredness, or bad timing, and I am certainly not going to justify what happened. I said it. It was wrong. And I take full, honest responsibility for it.
+          </p>
+          <p>
+            You asked for time and space, and you deserve every second of it. I want you to know that I hear you, I respect what you need, and I am genuinely sorry for putting that pain between us.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       CHAPTER 03 · WHAT I UNDERSTAND NOW
+       ====================================================================== -->
+  <section id="chapter-understand">
+    <div class="container">
+      <div class="text-center">
+        <div class="eyebrow">Chapter 02 · What I Understand Now</div>
+        <h2>Things I am holding<br><span class="highlight">in my heart.</span></h2>
+        <p class="lead" style="margin: 0 auto;">Click or tap any thought below. I wrote these because understanding you matters far more than just saying words.</p>
+      </div>
+
+      <div class="cards-grid">
+        <!-- Card 1: Trust -->
+        <div class="card-item reveal-fade delay-1">
+          <div class="card-header">
+            <span class="card-tag">01 · Principle</span>
+            <span class="card-indicator">+</span>
+          </div>
+          <div class="card-title">Trust</div>
+          <div class="card-hint">Tap to reflect</div>
+          <div class="card-content">
+            <p>Trust isn't something you ask someone to prove every time you feel uncertain. It is something you protect with consistency and faith.</p>
+          </div>
+        </div>
+
+        <!-- Card 2: Words -->
+        <div class="card-item reveal-fade delay-2">
+          <div class="card-header">
+            <span class="card-tag">02 · Weight</span>
+            <span class="card-indicator">+</span>
+          </div>
+          <div class="card-title">Words</div>
+          <div class="card-hint">Tap to reflect</div>
+          <div class="card-content">
+            <p>Sometimes one careless sentence can hurt more than you ever intended it to. Intentions don't erase the impact of what was said.</p>
+          </div>
+        </div>
+
+        <!-- Card 3: Space -->
+        <div class="card-item reveal-fade delay-3">
+          <div class="card-header">
+            <span class="card-tag">03 · Respect</span>
+            <span class="card-indicator">+</span>
+          </div>
+          <div class="card-title">Space</div>
+          <div class="card-hint">Tap to reflect</div>
+          <div class="card-content">
+            <p>If you need space, I want to respect that completely instead of suffocating you or making you feel pressured to reply.</p>
+          </div>
+        </div>
+
+        <!-- Card 4: Actions -->
+        <div class="card-item reveal-fade delay-1">
+          <div class="card-header">
+            <span class="card-tag">04 · Commitment</span>
+            <span class="card-indicator">+</span>
+          </div>
+          <div class="card-title">Actions</div>
+          <div class="card-hint">Tap to reflect</div>
+          <div class="card-content">
+            <p>I'm not going to promise that I'll magically never make a mistake again. I can promise to work on how I handle things and prove it through how I act.</p>
+          </div>
+        </div>
+
+        <!-- Card 5: Listening -->
+        <div class="card-item reveal-fade delay-2">
+          <div class="card-header">
+            <span class="card-tag">05 · Priority</span>
+            <span class="card-indicator">+</span>
+          </div>
+          <div class="card-title">Listening</div>
+          <div class="card-hint">Tap to reflect</div>
+          <div class="card-content">
+            <p>Understanding you matters infinitely more than winning an argument or trying to prove I didn't mean it.</p>
+          </div>
+        </div>
+
+        <!-- Card 6: Us -->
+        <div class="card-item reveal-fade delay-3">
+          <div class="card-header">
+            <span class="card-tag">06 · Value</span>
+            <span class="card-indicator">+</span>
+          </div>
+          <div class="card-title">Us</div>
+          <div class="card-hint">Tap to reflect</div>
+          <div class="card-content">
+            <p>What we have built together is rare and precious. It deserves genuine patience, care, and continuous respect.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       CHAPTER 04 · OUR LITTLE UNIVERSE
+       ====================================================================== -->
+  <section id="chapter-editorial">
+    <div class="container">
+      <div class="eyebrow">Chapter 03 · Our Little Universe</div>
+      <h2>Moments that defined<br><span class="highlight">who we are.</span></h2>
+      <p class="lead">Not an arbitrary gallery, but a curation of the times that reminded me how beautiful our bond is.</p>
+
+      <div class="editorial-grid">
+        <!-- Feature 1 -->
+        <div class="editorial-card span-7 reveal-fade delay-1">
+          <div class="editorial-img-wrap" style="aspect-ratio: 16/10;">
+            <img src="01_20251122_180501.jpg" alt="Special memory together" onerror="handleMediaError(this, '01_20251122_180501.jpg')">
+          </div>
+          <div class="editorial-info">
+            <div class="date">An Unforgettable Day</div>
+            <h3>When everything felt effortless</h3>
+            <p>Those hours where neither of us looked at a watch. We were simply present, sharing the kind of peace that only comes when you feel completely safe with someone.</p>
+          </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="editorial-card span-5 reveal-fade delay-2">
+          <div class="editorial-img-wrap" style="aspect-ratio: 4/5;">
+            <img src="08_20260306_185600.jpg" alt="Quiet calm memory" onerror="handleMediaError(this, '08_20260306_185600.jpg')">
+          </div>
+          <div class="editorial-info">
+            <div class="date">Quiet Radiance</div>
+            <h3>The calm in your presence</h3>
+            <p>Even when neither of us is saying a word, just being in the same room with you brings a calm I don't find anywhere else.</p>
+          </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="editorial-card span-6 reveal-fade delay-1">
+          <div class="editorial-img-wrap" style="aspect-ratio: 1/1;">
+            <img src="15_IMG_1062.jpg" alt="Authentic memory" onerror="handleMediaError(this, '15_IMG_1062.jpg')">
+          </div>
+          <div class="editorial-info">
+            <div class="date">Pure Joy</div>
+            <h3>The laughter that lights up everything</h3>
+            <p>Your smile here is everything I hold dear. Real, honest, and filled with warmth.</p>
+          </div>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="editorial-card span-6 reveal-fade delay-2">
+          <div class="editorial-img-wrap" style="aspect-ratio: 1/1;">
+            <img src="34_IMG_4247.jpeg" alt="Together in the moment" onerror="handleMediaError(this, '34_IMG_4247.jpeg')">
+          </div>
+          <div class="editorial-info">
+            <div class="date">Side by Side</div>
+            <h3>Every ordinary step together</h3>
+            <p>Walking through normal days and discovering that with you, no day ever felt ordinary.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       CHAPTER 05 · THE MEMORIES (CURATED GALLERY)
+       ====================================================================== -->
+  <section id="chapter-gallery">
+    <div class="container">
+      <div class="text-center">
+        <div class="eyebrow">Chapter 04 · The Memories</div>
+        <h2>A gallery of us,<br><span class="highlight">unfiltered.</span></h2>
+        <p class="lead" style="margin: 0 auto;">Every photograph here is a physical piece of our journey. Click any photo to hold it in focus.</p>
+
+        <!-- Filter Bar -->
+        <div class="gallery-filter-bar">
+          <button class="filter-btn active" data-filter="all">All Memories (40)</button>
+          <button class="filter-btn" data-filter="candid">Unfiltered &amp; Silly</button>
+          <button class="filter-btn" data-filter="quiet">Quiet Days</button>
+          <button class="filter-btn" data-filter="adventure">Little Adventures</button>
+        </div>
+      </div>
+
+      <!-- Masonry Container -->
+      <div class="masonry-gallery" id="masonryGallery">
+        <!-- Dynamically rendered by script.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox Modal (Tactile Photograph) -->
+  <div class="lightbox-modal" id="lightboxModal" role="dialog" aria-modal="true" aria-label="Photo memory viewer">
+    <div class="lightbox-inner">
+      <button class="lightbox-close-btn" id="lightboxCloseBtn" aria-label="Close photo">×</button>
+      <button class="lightbox-nav-btn lightbox-prev" id="lightboxPrevBtn" aria-label="Previous photo">‹</button>
+      <button class="lightbox-nav-btn lightbox-next" id="lightboxNextBtn" aria-label="Next photo">›</button>
+
+      <div class="lightbox-frame">
+        <div class="lightbox-img-wrap">
+          <img id="lightboxImg" src="" alt="Memory in detail">
+        </div>
+        <div class="lightbox-meta">
+          <div class="lightbox-caption-text" id="lightboxCaption"></div>
+          <div class="lightbox-counter" id="lightboxCounter"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       CHAPTER 06 · THE MOMENTS THAT MOVE
+       ====================================================================== -->
+  <section id="chapter-videos">
+    <div class="container">
+      <div class="text-center">
+        <div class="eyebrow">Chapter 05 · Moving Memories</div>
+        <h2>The moments that<br><span class="highlight">move.</span></h2>
+        <p class="lead" style="margin: 0 auto;">Photographs keep the frame; videos keep the breath and motion. Audio is muted by default so you remain in complete control.</p>
+      </div>
+
+      <div class="videos-grid">
+        <!-- Video 1 -->
+        <div class="video-card reveal-fade delay-1">
+          <div class="video-player-wrap">
+            <video preload="metadata" playsinline muted loop data-filename="41_3110BCB1-1A48-49FA-936C-1DFB72BF4211.mp4">
+              <source src="41_3110BCB1-1A48-49FA-936C-1DFB72BF4211.mp4" type="video/mp4">
+            </video>
+            <div class="video-overlay-ctrl">
+              <div class="play-pause-btn">▶</div>
+            </div>
+            <button class="video-audio-toggle">
+              <span>🔊</span> <span class="video-audio-text">Unmute</span>
+            </button>
+          </div>
+          <div class="video-details">
+            <h3>A Moving Glimpse</h3>
+            <p>A brief, unscripted second that a still photograph couldn't quite hold.</p>
+          </div>
+        </div>
+
+        <!-- Video 2 -->
+        <div class="video-card reveal-fade delay-2">
+          <div class="video-player-wrap">
+            <video preload="metadata" playsinline muted loop data-filename="42_IMG_4183.mp4">
+              <source src="42_IMG_4183.mp4" type="video/mp4">
+            </video>
+            <div class="video-overlay-ctrl">
+              <div class="play-pause-btn">▶</div>
+            </div>
+            <button class="video-audio-toggle">
+              <span>🔊</span> <span class="video-audio-text">Unmute</span>
+            </button>
+          </div>
+          <div class="video-details">
+            <h3>The Sound of That Day</h3>
+            <p>The ambient rhythm of where we were and how easy it felt to be together.</p>
+          </div>
+        </div>
+
+        <!-- Video 3 -->
+        <div class="video-card reveal-fade delay-3">
+          <div class="video-player-wrap">
+            <video preload="metadata" playsinline muted loop data-filename="43_IMG_4229.mp4">
+              <source src="43_IMG_4229.mp4" type="video/mp4">
+            </video>
+            <div class="video-overlay-ctrl">
+              <div class="play-pause-btn">▶</div>
+            </div>
+            <button class="video-audio-toggle">
+              <span>🔊</span> <span class="video-audio-text">Unmute</span>
+            </button>
+          </div>
+          <div class="video-details">
+            <h3>In the Middle of the Moment</h3>
+            <p>No posing, no rehearsing. Just being right there in real time.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       CHAPTER 07 · THE LITTLE THINGS
+       ====================================================================== -->
+  <section id="chapter-little-things">
+    <div class="container-narrow">
+      <div class="eyebrow">Chapter 06 · The Quiet Reality</div>
+      <h2>The little things that<br><span class="highlight">made us real.</span></h2>
+      <p class="lead">A relationship isn't made in dramatic speeches. It lives in the small, unscripted realities that we built quietly together.</p>
+
+      <div class="little-things-list">
+        <div class="little-thing-item reveal-fade delay-1">
+          <div class="little-num">01</div>
+          <div class="little-text">
+            <h3>The random conversations</h3>
+            <p>Talking about completely trivial things late at night and realizing that talking to you is the best part of my day.</p>
+          </div>
+        </div>
+
+        <div class="little-thing-item reveal-fade delay-2">
+          <div class="little-num">02</div>
+          <div class="little-text">
+            <h3>The stupid jokes</h3>
+            <p>The jokes that make no sense to anyone else in the world, but make both of us burst into laughter every single time.</p>
+          </div>
+        </div>
+
+        <div class="little-thing-item reveal-fade delay-3">
+          <div class="little-num">03</div>
+          <div class="little-text">
+            <h3>The moments neither of us planned</h3>
+            <p>Taking wrong turns, sitting in unexpected places, and finding that wherever you are is where I want to be.</p>
+          </div>
+        </div>
+
+        <div class="little-thing-item reveal-fade delay-1">
+          <div class="little-num">04</div>
+          <div class="little-text">
+            <h3>The photographs taken without thought</h3>
+            <p>The candid, blurry, imperfect pictures we snapped on a whim, which are now the most valuable memories I possess.</p>
+          </div>
+        </div>
+
+        <div class="little-thing-item reveal-fade delay-2">
+          <div class="little-num">05</div>
+          <div class="little-text">
+            <h3>The comfort of simply being together</h3>
+            <p>Not needing to put on a performance or be anyone other than who I am, knowing you offered that same safety in return.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       CHAPTER 08 · A LETTER FROM AADU
+       ====================================================================== -->
+  <section id="chapter-letter">
+    <div class="container-narrow">
+      <div class="letter-wrapper reveal-fade">
+        <div class="letter-date">A personal letter for you</div>
+        <div class="letter-salutation">Dear Siyu,</div>
+
+        <div class="letter-prose">
+          <p>
+            I know I hurt you.
+          </p>
+          <p class="accent-para">
+            What I said was wrong, and I understand why it made you feel like there was doubt where there never should have been.
+          </p>
+          <p>
+            I don't want to explain it away, and I won't make excuses for how I acted. You deserved patience, understanding, and complete trust from me in that moment, and I failed to give you that.
+          </p>
+          <p>
+            I'm deeply sorry for putting that feeling between us.
+          </p>
+          <p>
+            I know an apology doesn't instantly undo what someone felt. And I know I have no right to ask you to stop being upset just because I'm sorry.
+          </p>
+          <p>
+            So I am not asking for that.
+          </p>
+          <p>
+            If you need time, please take it without hesitation. If you need space, I will respect it completely and quietly.
+          </p>
+          <p>
+            I just want you to know that I understand what I did, I am genuinely sorry from the bottom of my heart, and I want to show you through my actions—not just empty promises—that I can do better.
+          </p>
+          <p>
+            I love you, Siyu. And I am endlessly grateful for every memory we've made together.
+          </p>
+        </div>
+
+        <div class="letter-signature">
+          <div class="sign-off">
+            Always,<br>
+            <span>Aadu ❤️</span>
+          </div>
+          <div class="seal-emblem" title="With sincerity">
+            S &amp; A
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       CHAPTER 09 · ONE LAST THING
+       ====================================================================== -->
+  <section id="chapter-farewell">
+    <div class="container-narrow">
+      <div class="farewell-sequence">
+        <div class="step-line" id="farewell-1">You don't have to reply tonight.</div>
+        <div class="step-line" id="farewell-2">You don't have to forgive me immediately.</div>
+        <div class="step-line highlight-line" id="farewell-3">Take all the time and space you need.</div>
+        <div class="step-line" id="farewell-4">I just wanted you to know that I'm truly sorry.</div>
+        <div class="step-line final-line" id="farewell-5">Goodnight, Siyu. ❤️</div>
+      </div>
+
+      <div class="farewell-restart" id="farewellRestartBox">
+        <button class="return-btn" id="returnTopBtn">Return to the beginning</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating Toast Notification -->
+  <div class="toast-notice" id="toastNotice"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
