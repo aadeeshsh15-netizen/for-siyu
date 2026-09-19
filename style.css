@@ -399,13 +399,18 @@ section {
 
 /* Reveal Transitions */
 .reveal-fade {
-  opacity: 0;
-  transform: translateY(30px);
+  opacity: 1;
+  transform: translateY(0);
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
-.reveal-fade.visible {
+body.has-reveal .reveal-fade:not(.visible) {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+body.has-reveal .reveal-fade.visible {
   opacity: 1;
   transform: translateY(0);
 }

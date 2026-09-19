@@ -320,9 +320,10 @@ sections.forEach((sec) => sectionObserver.observe(sec));
 
 // Smooth Scroll Reveal for elements with scroll fallback
 function checkReveals() {
-  document.querySelectorAll('.reveal-fade:not(.visible)').forEach((el) => {
+  const vh = window.innerHeight || document.documentElement.clientHeight;
+  document.querySelectorAll('.reveal-fade').forEach((el) => {
     const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 1.15 && rect.bottom > -100) {
+    if (rect.top < vh + 120 && rect.bottom > -120) {
       el.classList.add('visible');
     }
   });
@@ -334,9 +335,10 @@ const revealObserver = new IntersectionObserver((entries) => {
       entry.target.classList.add('visible');
     }
   });
-}, { threshold: 0.05, rootMargin: '0px 0px 80px 0px' });
+}, { threshold: 0.05, rootMargin: '60px 0px 100px 0px' });
 
 document.querySelectorAll('.reveal-fade').forEach((el) => revealObserver.observe(el));
+document.body.classList.add('has-reveal');
 window.addEventListener('scroll', checkReveals, { passive: true });
 window.addEventListener('resize', checkReveals, { passive: true });
 
