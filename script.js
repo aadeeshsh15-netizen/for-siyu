@@ -318,16 +318,27 @@ const sectionObserver = new IntersectionObserver((entries) => {
 
 sections.forEach((sec) => sectionObserver.observe(sec));
 
-// Smooth Scroll Reveal for elements
+// Smooth Scroll Reveal for elements with scroll fallback
+function checkReveals() {
+  document.querySelectorAll('.reveal-fade:not(.visible)').forEach((el) => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 1.15 && rect.bottom > -100) {
+      el.classList.add('visible');
+    }
+  });
+}
+
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
     }
   });
-}, { threshold: 0.12 });
+}, { threshold: 0.05, rootMargin: '0px 0px 80px 0px' });
 
 document.querySelectorAll('.reveal-fade').forEach((el) => revealObserver.observe(el));
+window.addEventListener('scroll', checkReveals, { passive: true });
+window.addEventListener('resize', checkReveals, { passive: true });
 
 // -----------------------------------------------------------------------------
 // 6. Interactive Understanding Cards (Chapter 3)
@@ -602,6 +613,8 @@ document.addEventListener('DOMContentLoaded', () => {
   renderGallery('all');
   setupGalleryFilters();
   setupVideos();
+  checkReveals();
+  setTimeout(checkReveals, 300);
 
   // Dock button click binding
   document.querySelectorAll('.dock-item').forEach((btn) => {
