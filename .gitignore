@@ -4,3 +4,6 @@ Thumbs.db
 node_modules/
 .vscode/
 .idea/
+screenshot_*.png
+cdp_*.png
+slice_*.png
