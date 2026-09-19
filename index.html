@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#09070c">
+  <meta name="theme-color" content="#07050a">
   <title>For Siyu — From Aadu</title>
-  <meta name="description" content="An interactive memory and personal apology from Aadu for Siyu.">
+  <meta name="description" content="An intimate memory journey and personal apology from Aadu for Siyu.">
 
   <!-- Typography: Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,27 +21,28 @@
   <canvas id="ambient-canvas"></canvas>
   <div class="bg-grain"></div>
 
-  <!-- Custom Cursor (Desktop) -->
+  <!-- Custom Cursor (Desktop Only) -->
   <div class="custom-cursor" id="custom-cursor"></div>
   <div class="custom-cursor-follower" id="custom-cursor-follower"></div>
 
-  <!-- Top Reading Progress Indicator -->
+  <!-- Reading Progress Bar -->
   <div class="reading-progress-bar">
     <div class="reading-progress-fill" id="readingProgressFill"></div>
   </div>
 
-  <!-- Top Right Sound & Navigation Controls -->
+  <!-- Floating Audio Controller -->
   <header class="nav-controls">
-    <button class="ctrl-btn" id="soundToggleBtn" aria-label="Toggle subtle ambient soundscape">
-      <svg viewBox="0 0 24 24">
-        <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
-        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-      </svg>
-      <span id="soundLabel">Sound: Off</span>
+    <button class="audio-pill" id="soundToggleBtn" aria-label="Toggle subtle ambient music">
+      <span class="soundwave-icon">
+        <span class="soundwave-bar"></span>
+        <span class="soundwave-bar"></span>
+        <span class="soundwave-bar"></span>
+      </span>
+      <span id="soundLabel">Music</span>
     </button>
   </header>
 
-  <!-- Side Chapter Progress Dock -->
+  <!-- Side Chapter Progress Dock (Desktop) -->
   <nav class="chapter-dock" aria-label="Chapter navigation">
     <div class="dock-item active" data-target="chapter-opening" title="Chapter 01">
       <div class="dock-dot"></div>
@@ -87,9 +88,9 @@
   <section id="chapter-opening">
     <div class="hero-aura"></div>
     <div class="container text-center">
-      <div class="hero-tag reveal-fade visible">A space created just for you</div>
+      <div class="hero-tag reveal-fade visible">Chapter 01 · For Siyu</div>
       <h1 class="hero-title reveal-fade visible delay-1"><span>Siyu.</span></h1>
-      <p class="hero-subtitle reveal-fade visible delay-2">"For the person I never wanted to hurt."</p>
+      <p class="hero-subtitle reveal-fade visible delay-2">For the person I never wanted to hurt.</p>
       
       <div class="hero-prompt reveal-fade visible delay-3">
         <button class="start-btn" id="startJourneyBtn">Begin</button>
@@ -104,7 +105,7 @@
   <section id="chapter-apology">
     <div class="container-narrow">
       <div class="glass-panel reveal-fade">
-        <div class="eyebrow">Chapter 01 · Before Anything Else</div>
+        <div class="eyebrow">Chapter 02 · Before Anything Else</div>
         <h2>I said something<br><span class="highlight">I shouldn't have said.</span></h2>
         
         <div class="apology-body">
@@ -112,13 +113,13 @@
             What I said communicated <strong>distrust</strong> between us, and I understand why that hurt you so deeply.
           </div>
           <p>
-            Trust is supposed to be the one thing that feels safe and solid in a relationship. When I let words come out that questioned or doubted that foundation, I broke the comfort and security you deserve to feel with me.
+            Trust is supposed to be the one thing that feels safe and solid inside a relationship. When I let words come out that questioned that foundation, I broke the comfort and security you deserve to feel with me.
           </p>
           <p>
-            I am not going to offer excuses. I am not going to blame circumstances, tiredness, or bad timing, and I am certainly not going to justify what happened. I said it. It was wrong. And I take full, honest responsibility for it.
+            I am not going to offer excuses. I am not going to blame circumstances, tiredness, or bad timing, and I will not try to justify it. I said it. It was wrong. And I take full, honest responsibility for it.
           </p>
           <p>
-            You asked for time and space, and you deserve every second of it. I want you to know that I hear you, I respect what you need, and I am genuinely sorry for putting that pain between us.
+            You asked for time and space, and I want to give that to you completely. I hear you, I respect what you need, and I am genuinely sorry for putting that pain between us.
           </p>
         </div>
       </div>
@@ -131,9 +132,9 @@
   <section id="chapter-understand">
     <div class="container">
       <div class="text-center">
-        <div class="eyebrow">Chapter 02 · What I Understand Now</div>
+        <div class="eyebrow">Chapter 03 · What I Understand Now</div>
         <h2>Things I am holding<br><span class="highlight">in my heart.</span></h2>
-        <p class="lead" style="margin: 0 auto;">Click or tap any thought below. I wrote these because understanding you matters far more than just saying words.</p>
+        <p class="lead" style="margin: 0 auto;">Tap any card below. I wrote these because understanding you matters far more than just saying words.</p>
       </div>
 
       <div class="cards-grid">
@@ -159,7 +160,7 @@
           <div class="card-title">Words</div>
           <div class="card-hint">Tap to reflect</div>
           <div class="card-content">
-            <p>Sometimes one careless sentence can hurt more than you ever intended it to. Intentions don't erase the impact of what was said.</p>
+            <p>Sometimes one sentence can hurt more than you intended it to. Good intentions never undo the impact of spoken words.</p>
           </div>
         </div>
 
@@ -172,7 +173,7 @@
           <div class="card-title">Space</div>
           <div class="card-hint">Tap to reflect</div>
           <div class="card-content">
-            <p>If you need space, I want to respect that completely instead of suffocating you or making you feel pressured to reply.</p>
+            <p>If you need space, I want to respect that completely instead of making you feel pressured to reply before you are ready.</p>
           </div>
         </div>
 
@@ -198,7 +199,7 @@
           <div class="card-title">Listening</div>
           <div class="card-hint">Tap to reflect</div>
           <div class="card-content">
-            <p>Understanding you matters infinitely more than winning an argument or trying to prove I didn't mean it.</p>
+            <p>Understanding you matters infinitely more than winning an argument or defending myself.</p>
           </div>
         </div>
 
@@ -223,7 +224,7 @@
        ====================================================================== -->
   <section id="chapter-editorial">
     <div class="container">
-      <div class="eyebrow">Chapter 03 · Our Little Universe</div>
+      <div class="eyebrow">Chapter 04 · Our Little Universe</div>
       <h2>Moments that defined<br><span class="highlight">who we are.</span></h2>
       <p class="lead">Not an arbitrary gallery, but a curation of the times that reminded me how beautiful our bond is.</p>
 
@@ -248,7 +249,7 @@
           <div class="editorial-info">
             <div class="date">Quiet Radiance</div>
             <h3>The calm in your presence</h3>
-            <p>Even when neither of us is saying a word, just being in the same room with you brings a calm I don't find anywhere else.</p>
+            <p>Even when neither of us is saying a word, just being near you brings a peace I don't find anywhere else.</p>
           </div>
         </div>
 
@@ -260,7 +261,7 @@
           <div class="editorial-info">
             <div class="date">Pure Joy</div>
             <h3>The laughter that lights up everything</h3>
-            <p>Your smile here is everything I hold dear. Real, honest, and filled with warmth.</p>
+            <p>Your smile here is everything I hold dear. Honest, gentle, and filled with warmth.</p>
           </div>
         </div>
 
@@ -285,9 +286,9 @@
   <section id="chapter-gallery">
     <div class="container">
       <div class="text-center">
-        <div class="eyebrow">Chapter 04 · The Memories</div>
+        <div class="eyebrow">Chapter 05 · The Memories</div>
         <h2>A gallery of us,<br><span class="highlight">unfiltered.</span></h2>
-        <p class="lead" style="margin: 0 auto;">Every photograph here is a physical piece of our journey. Click any photo to hold it in focus.</p>
+        <p class="lead" style="margin: 0 auto;">Every photograph here is a physical piece of our journey. Tap any photo to hold it in focus.</p>
 
         <!-- Filter Bar -->
         <div class="gallery-filter-bar">
@@ -305,7 +306,7 @@
     </div>
   </section>
 
-  <!-- Lightbox Modal (Tactile Photograph) -->
+  <!-- Lightbox Modal -->
   <div class="lightbox-modal" id="lightboxModal" role="dialog" aria-modal="true" aria-label="Photo memory viewer">
     <div class="lightbox-inner">
       <button class="lightbox-close-btn" id="lightboxCloseBtn" aria-label="Close photo">×</button>
@@ -321,6 +322,12 @@
           <div class="lightbox-counter" id="lightboxCounter"></div>
         </div>
       </div>
+
+      <!-- Mobile Navigation Bar -->
+      <div class="mobile-lightbox-bar">
+        <button class="mobile-nav-btn" id="mobilePrevBtn">‹ Previous</button>
+        <button class="mobile-nav-btn" id="mobileNextBtn">Next ›</button>
+      </div>
     </div>
   </div>
 
@@ -330,17 +337,17 @@
   <section id="chapter-videos">
     <div class="container">
       <div class="text-center">
-        <div class="eyebrow">Chapter 05 · Moving Memories</div>
+        <div class="eyebrow">Chapter 06 · The Moments That Move</div>
         <h2>The moments that<br><span class="highlight">move.</span></h2>
-        <p class="lead" style="margin: 0 auto;">Photographs keep the frame; videos keep the breath and motion. Audio is muted by default so you remain in complete control.</p>
+        <p class="lead" style="margin: 0 auto;">Photographs hold the frame; videos hold the breath and motion. Audio is muted by default so you remain in complete control.</p>
       </div>
 
       <div class="videos-grid">
         <!-- Video 1 -->
         <div class="video-card reveal-fade delay-1">
           <div class="video-player-wrap">
-            <video preload="metadata" playsinline muted loop data-filename="41_3110BCB1-1A48-49FA-936C-1DFB72BF4211.mp4">
-              <source src="41_3110BCB1-1A48-49FA-936C-1DFB72BF4211.mp4" type="video/mp4">
+            <video preload="auto" playsinline webkit-playsinline="true" muted loop data-filename="41_3110BCB1-1A48-49FA-936C-1DFB72BF4211.mp4">
+              <source src="41_3110BCB1-1A48-49FA-936C-1DFB72BF4211.mp4#t=0.5" type="video/mp4">
             </video>
             <div class="video-overlay-ctrl">
               <div class="play-pause-btn">▶</div>
@@ -358,8 +365,8 @@
         <!-- Video 2 -->
         <div class="video-card reveal-fade delay-2">
           <div class="video-player-wrap">
-            <video preload="metadata" playsinline muted loop data-filename="42_IMG_4183.mp4">
-              <source src="42_IMG_4183.mp4" type="video/mp4">
+            <video preload="auto" playsinline webkit-playsinline="true" muted loop data-filename="42_IMG_4183.mp4">
+              <source src="42_IMG_4183.mp4#t=0.5" type="video/mp4">
             </video>
             <div class="video-overlay-ctrl">
               <div class="play-pause-btn">▶</div>
@@ -377,8 +384,8 @@
         <!-- Video 3 -->
         <div class="video-card reveal-fade delay-3">
           <div class="video-player-wrap">
-            <video preload="metadata" playsinline muted loop data-filename="43_IMG_4229.mp4">
-              <source src="43_IMG_4229.mp4" type="video/mp4">
+            <video preload="auto" playsinline webkit-playsinline="true" muted loop data-filename="43_IMG_4229.mp4">
+              <source src="43_IMG_4229.mp4#t=0.5" type="video/mp4">
             </video>
             <div class="video-overlay-ctrl">
               <div class="play-pause-btn">▶</div>
@@ -401,7 +408,7 @@
        ====================================================================== -->
   <section id="chapter-little-things">
     <div class="container-narrow">
-      <div class="eyebrow">Chapter 06 · The Quiet Reality</div>
+      <div class="eyebrow">Chapter 07 · The Little Things</div>
       <h2>The little things that<br><span class="highlight">made us real.</span></h2>
       <p class="lead">A relationship isn't made in dramatic speeches. It lives in the small, unscripted realities that we built quietly together.</p>
 
@@ -410,7 +417,7 @@
           <div class="little-num">01</div>
           <div class="little-text">
             <h3>The random conversations</h3>
-            <p>Talking about completely trivial things late at night and realizing that talking to you is the best part of my day.</p>
+            <p>Talking about completely trivial things late at night and realizing that hearing your voice is the best part of my day.</p>
           </div>
         </div>
 
@@ -434,7 +441,7 @@
           <div class="little-num">04</div>
           <div class="little-text">
             <h3>The photographs taken without thought</h3>
-            <p>The candid, blurry, imperfect pictures we snapped on a whim, which are now the most valuable memories I possess.</p>
+            <p>The candid, blurry, imperfect pictures we snapped on a whim, which are now the most valuable memories I hold.</p>
           </div>
         </div>
 
@@ -455,7 +462,7 @@
   <section id="chapter-letter">
     <div class="container-narrow">
       <div class="letter-wrapper reveal-fade">
-        <div class="letter-date">A personal letter for you</div>
+        <div class="letter-date">Chapter 08 · A Personal Letter</div>
         <div class="letter-salutation">Dear Siyu,</div>
 
         <div class="letter-prose">
@@ -506,22 +513,20 @@
        ====================================================================== -->
   <section id="chapter-farewell">
     <div class="container-narrow">
+      <div class="eyebrow" style="margin-bottom: 30px;">Chapter 09 · One Last Thing</div>
       <div class="farewell-sequence">
-        <div class="step-line" id="farewell-1">You don't have to reply tonight.</div>
-        <div class="step-line" id="farewell-2">You don't have to forgive me immediately.</div>
-        <div class="step-line highlight-line" id="farewell-3">Take all the time and space you need.</div>
-        <div class="step-line" id="farewell-4">I just wanted you to know that I'm truly sorry.</div>
-        <div class="step-line final-line" id="farewell-5">Goodnight, Siyu. ❤️</div>
+        <div class="step-line">You don't have to reply tonight.</div>
+        <div class="step-line">You don't have to forgive me immediately.</div>
+        <div class="step-line highlight-line">Take all the time and space you need.</div>
+        <div class="step-line">I just wanted you to know that I'm truly sorry.</div>
+        <div class="step-line final-line">Goodnight, Siyu. ❤️</div>
       </div>
 
-      <div class="farewell-restart" id="farewellRestartBox">
+      <div class="farewell-restart">
         <button class="return-btn" id="returnTopBtn">Return to the beginning</button>
       </div>
     </div>
   </section>
-
-  <!-- Floating Toast Notification -->
-  <div class="toast-notice" id="toastNotice"></div>
 
   <script src="script.js"></script>
 </body>

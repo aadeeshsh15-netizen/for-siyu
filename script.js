@@ -199,6 +199,8 @@ const chords = [
   [196.00, 246.94, 293.66, 349.23]  // G7
 ];
 
+let filterNode = null;
+
 function playAmbientChord(freqs) {
   if (!audioCtx || !soundPlaying) return;
   const now = audioCtx.currentTime;
@@ -207,19 +209,20 @@ function playAmbientChord(freqs) {
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
     
-    osc.type = idx === 0 ? 'triangle' : 'sine';
+    // Warm harmonics: sine for soft round body
+    osc.type = 'sine';
     osc.frequency.setValueAtTime(freq, now);
 
     // Warm, slow attack and smooth decaying release
     gain.gain.setValueAtTime(0.0001, now);
-    gain.gain.exponentialRampToValueAtTime(0.025 / freqs.length, now + 1.6);
-    gain.gain.exponentialRampToValueAtTime(0.0001, now + 6.8);
+    gain.gain.exponentialRampToValueAtTime(0.018 / freqs.length, now + 1.8);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 6.5);
 
     osc.connect(gain);
-    gain.connect(ambientGain);
+    gain.connect(filterNode || ambientGain);
 
     osc.start(now);
-    osc.stop(now + 7.0);
+    osc.stop(now + 6.8);
   });
 }
 
@@ -230,8 +233,16 @@ function toggleSound() {
   if (!audioCtx) {
     const AudioContext = window.AudioContext || window.webkitAudioContext;
     audioCtx = new AudioContext();
+
+    // Warm felt filter for acoustic character
+    filterNode = audioCtx.createBiquadFilter();
+    filterNode.type = 'lowpass';
+    filterNode.frequency.setValueAtTime(520, audioCtx.currentTime);
+
     ambientGain = audioCtx.createGain();
-    ambientGain.gain.setValueAtTime(0.7, audioCtx.currentTime);
+    ambientGain.gain.setValueAtTime(0.55, audioCtx.currentTime);
+
+    filterNode.connect(ambientGain);
     ambientGain.connect(audioCtx.destination);
   }
 
@@ -243,20 +254,18 @@ function toggleSound() {
 
   if (soundPlaying) {
     soundBtn.classList.add('active');
-    soundLabel.textContent = 'Sound: Peaceful';
-    showToast('Soft ambient soundscape playing ♫');
+    if (soundLabel) soundLabel.textContent = 'Playing';
 
     let chordIdx = 0;
     playAmbientChord(chords[chordIdx]);
     chordInterval = setInterval(() => {
       chordIdx = (chordIdx + 1) % chords.length;
       playAmbientChord(chords[chordIdx]);
-    }, 6000);
+    }, 5800);
   } else {
     soundBtn.classList.remove('active');
-    soundLabel.textContent = 'Sound: Off';
+    if (soundLabel) soundLabel.textContent = 'Music';
     if (chordInterval) clearInterval(chordInterval);
-    showToast('Sound paused');
   }
 }
 
@@ -349,13 +358,7 @@ function setupUnderstandingCards() {
   const cards = document.querySelectorAll('.card-item');
   cards.forEach((card) => {
     card.addEventListener('click', () => {
-      const isOpen = card.classList.contains('open');
-      // Optional: keep it open or toggle
       card.classList.toggle('open');
-      if (!isOpen) {
-        const title = card.querySelector('.card-title')?.textContent || 'Card';
-        showToast(`Revealed: ${title}`);
-      }
     });
   });
 }
@@ -434,6 +437,8 @@ const lightboxCounter = document.getElementById('lightboxCounter');
 const lightboxCloseBtn = document.getElementById('lightboxCloseBtn');
 const lightboxPrevBtn = document.getElementById('lightboxPrevBtn');
 const lightboxNextBtn = document.getElementById('lightboxNextBtn');
+const mobilePrevBtn = document.getElementById('mobilePrevBtn');
+const mobileNextBtn = document.getElementById('mobileNextBtn');
 
 function openLightbox(index) {
   if (!currentGalleryList[index]) return;
@@ -471,6 +476,8 @@ function prevLightboxPhoto() {
 if (lightboxCloseBtn) lightboxCloseBtn.addEventListener('click', closeLightbox);
 if (lightboxNextBtn) lightboxNextBtn.addEventListener('click', nextLightboxPhoto);
 if (lightboxPrevBtn) lightboxPrevBtn.addEventListener('click', prevLightboxPhoto);
+if (mobileNextBtn) mobileNextBtn.addEventListener('click', nextLightboxPhoto);
+if (mobilePrevBtn) mobilePrevBtn.addEventListener('click', prevLightboxPhoto);
 
 // Close on backdrop click
 if (lightboxModal) {
@@ -563,43 +570,13 @@ function setupVideos() {
         if (audioText) {
           audioText.textContent = video.muted ? 'Unmute' : 'Mute';
         }
-        showToast(video.muted ? 'Video muted' : 'Video audio enabled');
       });
     }
   });
 }
 
 // -----------------------------------------------------------------------------
-// 10. Chapter 9 Farewell Sequence (Delicate Timed Reveals)
-// -----------------------------------------------------------------------------
-let farewellTriggered = false;
-function triggerFarewellSequence() {
-  if (farewellTriggered) return;
-  farewellTriggered = true;
-
-  const steps = [
-    { id: 'farewell-1', delay: 400 },
-    { id: 'farewell-2', delay: 2600 },
-    { id: 'farewell-3', delay: 5200 },
-    { id: 'farewell-4', delay: 7800 },
-    { id: 'farewell-5', delay: 10400 }
-  ];
-
-  steps.forEach((step) => {
-    setTimeout(() => {
-      const el = document.getElementById(step.id);
-      if (el) el.classList.add('active');
-    }, step.delay);
-  });
-
-  setTimeout(() => {
-    const restartBox = document.getElementById('farewellRestartBox');
-    if (restartBox) restartBox.classList.add('visible');
-  }, 12500);
-}
-
-// -----------------------------------------------------------------------------
-// 11. Navigation & Smooth Scroll Helpers
+// 10. Navigation & Smooth Scroll Helpers
 // -----------------------------------------------------------------------------
 function scrollToSection(id) {
   const target = document.getElementById(id);
